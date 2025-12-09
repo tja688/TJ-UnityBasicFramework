@@ -1,0 +1,74 @@
+/* CubeSpawnerWindow.uss */
+
+/* 全局容器样式 */
+.main-container {
+    padding: 20px;
+    background-color: #383838; /* 深灰色背景 */
+    height: 100%;
+}
+
+/* 标题样式 */
+.header-title {
+    font-size: 20px;
+    -unity-font-style: bold;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    align-self: center; /* 居中 */
+    border-bottom-width: 2px;
+    border-bottom-color: #555555;
+    padding-bottom: 5px;
+}
+
+/* 输入框分组容器 - 卡片式设计 */
+.input-group {
+    background-color: #424242;
+    border-width: 1px;
+    border-color: #2a2a2a;
+    border-radius: 8px; /* 圆角 */
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/* 输入字段通用样式 */
+.unity-base-field {
+    margin-bottom: 8px;
+}
+
+/* 让Label稍微宽一点，对齐更好看 */
+.unity-base-field__label {
+    min-width: 80px;
+    color: #bdbdbd;
+}
+
+/* 主要操作按钮 */
+.action-button {
+    height: 40px;
+    background-color: #2e7d32; /* 绿色背景 */
+    color: #ffffff;
+    font-size: 14px;
+    -unity-font-style: bold;
+    border-radius: 6px;
+    border-width: 0;
+    margin-top: 5px;
+    transition-duration: 0.2s; /* 动画过渡时间 */
+}
+
+/* 按钮悬停效果 (Hover) */
+.action-button:hover {
+    background-color: #388e3c;
+    scale: 1.02; /* 微微放大 */
+}
+
+/* 按钮按下效果 (Active) */
+.action-button:active {
+    background-color: #1b5e20;
+    scale: 0.98;
+}
+
+/* 底部提示文字 */
+.help-label {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #888888;
+    -unity-text-align: middle-center;
+}

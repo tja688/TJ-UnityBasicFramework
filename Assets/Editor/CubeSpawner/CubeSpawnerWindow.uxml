@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement class="main-container">
+        
+        <ui:Label text="3D 物体配置中心" class="header-title" />
+
+        <ui:VisualElement class="input-group">
+            <ui:Label text="基础配置" style="font-size: 12px; -unity-font-style: bold; margin-bottom: 5px; color: #aaaaaa;"/>
+            
+            <ui:TextField name="input-name" label="物体名称" value="MyCube" />
+            <ui:Vector3Field name="input-position" label="生成坐标" />
+            <ui:Toggle name="toggle-rigidbody" label="添加刚体组件" value="false" />
+        </ui:VisualElement>
+
+        <ui:Button name="btn-spawn" text="立即生成" class="action-button" />
+
+        <ui:Label text="提示: 支持 Ctrl+Z 撤销 | 生成后自动选中" class="help-label" />
+
+    </ui:VisualElement>
+
+</ui:UXML>
