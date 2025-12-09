@@ -98,6 +98,14 @@ namespace MyTools
             // 选中物体
             Selection.activeGameObject = cube;
 
+            // 假设你有一个 CubeConfig 类型的变量或者你动态创建了一个
+            CubeConfig config = ScriptableObject.CreateInstance<CubeConfig>();
+            // 必须创建成资源文件才能持久保存，但在内存里临时创建也能在检查器看
+            // 这里为了演示，我们直接选中一个新创建的内存对象
+
+            // 【核心代码】告诉检查器：看这里！
+            Selection.activeObject = config;
+            
             // 可选：在Scene视图聚焦该物体
             SceneView.lastActiveSceneView.FrameSelected();
 
