@@ -1,6 +1,6 @@
 #if USE_NEW_INPUT // <-- Added to allow compilation when using default input manager.
 
-// GENERATED AUTOMATICALLY FROM 'Assets/Plugins/Pixel Crushers/Dialogue System/Demo/Data/DemoInputControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Plugins/Pixel Crushers/Dialogue System/Demo/Data/DemoInputControls_Custom.inputactions'
 
 using System;
 using System.Collections;
@@ -8,13 +8,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @DemoInputControls : IInputActionCollection, IDisposable
+public class DemoInputControls_Custom : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @DemoInputControls()
+    public DemoInputControls_Custom()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""DemoInputControls"",
+    ""name"": ""DemoInputControls_Custom"",
     ""maps"": [
         {
             ""name"": ""DemoActionMap"",
@@ -264,8 +264,8 @@ public class @DemoInputControls : IInputActionCollection, IDisposable
     private readonly InputAction m_DemoActionMap_Fire1;
     public struct DemoActionMapActions
     {
-        private @DemoInputControls m_Wrapper;
-        public DemoActionMapActions(@DemoInputControls wrapper) { m_Wrapper = wrapper; }
+        private DemoInputControls_Custom m_Wrapper;
+        public DemoActionMapActions(DemoInputControls_Custom wrapper) { m_Wrapper = wrapper; }
         public InputAction @Horizontal => m_Wrapper.m_DemoActionMap_Horizontal;
         public InputAction @Vertical => m_Wrapper.m_DemoActionMap_Vertical;
         public InputAction @Fire1 => m_Wrapper.m_DemoActionMap_Fire1;
