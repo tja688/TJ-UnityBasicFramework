@@ -1,0 +1,8 @@
+<!-- Assets/Editor/TimelineValidation/UXML/TimelineValidationInspector.uxml -->
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="inspector-root" class="inspector-root">
+        <ui:Label name="inspector-title" text="Inspector" class="inspector-title"/>
+        <ui:ScrollView name="inspector-content" class="inspector-content"/>
+    </ui:VisualElement>
+</ui:UXML>

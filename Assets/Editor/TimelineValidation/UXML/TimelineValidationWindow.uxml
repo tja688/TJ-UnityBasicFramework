@@ -1,0 +1,31 @@
+<!-- Assets/Editor/TimelineValidation/UXML/TimelineValidationWindow.uxml -->
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement class="root">
+        <!-- Top toolbar -->
+        <ui:VisualElement class="toolbar">
+            <ui:Button name="play-btn" text="Play" class="toolbar-btn"/>
+            <ui:Button name="add-track-btn" text="+" class="toolbar-btn add-btn"/>
+            <ui:Toggle name="scale-toggle" text="Frame Scale" class="toolbar-toggle"/>
+            <uie:FloatField name="fps-field" label="FPS" class="toolbar-field"/>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="main">
+            <!-- Left library -->
+            <ui:VisualElement class="library">
+                <ui:Label text="Sub Track Library" class="section-title"/>
+                <ui:ScrollView name="library-container" class="library-list"/>
+            </ui:VisualElement>
+
+            <!-- Right timeline -->
+            <ui:VisualElement class="timeline">
+                <ui:VisualElement name="ruler" class="ruler"/>
+                <ui:VisualElement name="timeline-body" class="timeline-body">
+                    <ui:ScrollView name="tracks-viewport" class="tracks-viewport">
+                        <ui:VisualElement name="tracks-container" class="tracks-container"/>
+                    </ui:ScrollView>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

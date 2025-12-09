@@ -1,0 +1,18 @@
+/* Assets/Editor/TimelineValidation/USS/TimelineValidationInspector.uss */
+.inspector-root {
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 8px;
+    background-color: #252525;
+    color: white;
+}
+
+.inspector-title {
+    unity-font-style: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.inspector-content {
+    flex-grow: 1;
+}

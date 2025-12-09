@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement class="main-container">
+        <ui:VisualElement class="sidebar">
+            <ui:Label text="轨道资源库 (拖拽入轨道)" class="sidebar-header" />
+            <ui:VisualElement name="PaletteContainer">
+            </ui:VisualElement>
+            
+            <ui:Label text="属性检查器" class="sidebar-header" style="margin-top: 20px;" />
+            <ui:ScrollView class="inspector-container" name="InspectorContent">
+                <ui:Label text="请选择一个对象..." />
+            </ui:ScrollView>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="timeline-area" name="TimelineArea">
+            <ui:VisualElement class="toolbar">
+                <ui:Button name="PlayButton" text="播放 ▶" />
+                <ui:Button name="StopButton" text="停止 ■" />
+                <ui:Toggle name="UnitToggle" label="显示帧数" value="false" style="margin-left: 20px; color: #CCC;" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="ruler-container" name="RulerContainer">
+            </ui:VisualElement>
+
+            <ui:ScrollView class="track-scroll-view" name="TrackScrollView">
+                <ui:VisualElement name="TrackContainer">
+                </ui:VisualElement>
+                <ui:Button name="AddTrackBtn" text="+ 添加新轨道" class="add-track-btn" />
+            </ui:ScrollView>
+            
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

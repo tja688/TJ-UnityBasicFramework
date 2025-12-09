@@ -1,0 +1,149 @@
+/* Assets/Editor/TimelineValidation/USS/TimelineValidationWindow.uss */
+.root {
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #2b2b2b;
+    color: white;
+}
+
+.toolbar {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px;
+    background-color: #222;
+    border-bottom-width: 1px;
+    border-bottom-color: #444;
+}
+
+.toolbar-btn {
+    margin-right: 6px;
+    height: 24px;
+    width: 60px;
+}
+
+.add-btn {
+    width: 28px;
+}
+
+.toolbar-toggle {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.toolbar-field {
+    width: 120px;
+}
+
+.main {
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.library {
+    width: 220px;
+    background-color: #1f1f1f;
+    border-right-width: 1px;
+    border-right-color: #444;
+    padding: 6px;
+}
+
+.section-title {
+    unity-font-style: bold;
+    margin-bottom: 6px;
+}
+
+.library-list {
+    flex-grow: 1;
+}
+
+.library-item {
+    padding: 6px;
+    margin-bottom: 4px;
+    background-color: #333;
+    border-radius: 4px;
+}
+
+.library-item:hover {
+    background-color: #3e3e3e;
+}
+
+.timeline {
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.ruler {
+    height: 28px;
+    background-color: #262626;
+    border-bottom-width: 1px;
+    border-bottom-color: #444;
+}
+
+.timeline-body {
+    flex-grow: 1;
+}
+
+.tracks-viewport {
+    flex-grow: 1;
+    background-color: #2a2a2a;
+}
+
+.tracks-container {
+    flex-direction: column;
+}
+
+.track-row {
+    flex-direction: row;
+    height: 48px;
+    border-bottom-width: 1px;
+    border-bottom-color: #3c3c3c;
+}
+
+.track-header {
+    width: 160px;
+    background-color: #242424;
+    border-right-width: 1px;
+    border-right-color: #3c3c3c;
+    padding-left: 6px;
+    padding-right: 6px;
+    justify-content: center;
+}
+
+.track-body {
+    flex-grow: 1;
+    position: relative;
+}
+
+.clip {
+    position: absolute;
+    height: 28px;
+    top: 10px;
+    background-color: #4a78d0;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: rgba(255,255,255,0.25);
+}
+
+.clip-label {
+    margin-left: 6px;
+    margin-top: 5px;
+    unity-font-style: bold;
+}
+
+.clip-handle-left, .clip-handle-right {
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background-color: rgba(255,255,255,0.6);
+}
+
+.clip-handle-left { left: 0; }
+.clip-handle-right { right: 0; }
+
+.playhead {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ffcc00;
+}
