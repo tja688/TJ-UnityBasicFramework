@@ -1,0 +1,32 @@
+/* 基础容器样式 */
+.root-container {
+    background-color: #383838;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+/* 标题样式 */
+.header-label {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: #4db8ff;
+    margin-bottom: 10px;
+    border-bottom-width: 1px;
+    border-bottom-color: #555;
+}
+
+/* 结果显示区域 */
+.result-box {
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #2b2b2b;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: #444;
+}
+
+.result-text {
+    color: #8fffa5;
+    font-size: 12px;
+}

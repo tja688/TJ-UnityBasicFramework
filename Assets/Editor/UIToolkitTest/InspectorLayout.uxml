@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement class="root-container">
+        <ui:Label text="Script Functionality" class="header-label" name="TitleLabel"/>
+        <uie:ObjectField label="Target Object" name="TargetObjectField" type="UnityEngine.GameObject, UnityEngine.CoreModule"/>
+        
+        <ui:VisualElement class="result-box">
+            <ui:Label text="Waiting for target..." name="InfoLabel" class="result-text"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

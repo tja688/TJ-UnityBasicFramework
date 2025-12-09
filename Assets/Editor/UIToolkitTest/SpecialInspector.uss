@@ -1,0 +1,23 @@
+.root {
+    background-color: #202020;
+    padding: 10px;
+}
+
+.draggable-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #3A3A3A;
+    border-radius: 5px;
+    border-left-width: 4px;
+    border-left-color: #00AAFF; /* 默认蓝色 */
+}
+
+.draggable-item:hover {
+    background-color: #4A4A4A;
+}
+
+.item-label {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: #FFFFFF;
+}

@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement class="root">
+        <ui:Label text="[专属检查器] 资源库" style="font-size:16px; margin-bottom:15px; color:#AAA;"/>
+        
+        <ui:VisualElement name="ItemContainer" />
+        
+    </ui:VisualElement>
+</ui:UXML>
