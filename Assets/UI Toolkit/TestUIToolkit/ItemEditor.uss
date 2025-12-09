@@ -1,0 +1,60 @@
+/* 全局容器 */
+.root-container {
+    flex-direction: row; /* 水平排列 */
+    width: 100%;
+    height: 100%;
+    background-color: #282828; /* 深灰背景 */
+}
+
+/* 左侧列表栏 */
+.sidebar {
+    width: 30%;
+    min-width: 150px;
+    background-color: #202020;
+    border-right-width: 1px;
+    border-right-color: #404040;
+    padding: 10px;
+}
+
+.sidebar-header {
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: #e0e0e0;
+    margin-bottom: 10px;
+}
+
+/* 右侧详情栏 */
+.content {
+    flex-grow: 1; /* 占满剩余空间 */
+    padding: 20px;
+    background-color: #282828;
+}
+
+/* 通用输入框样式 */
+.unity-text-field {
+    margin-bottom: 10px;
+}
+
+.unity-label {
+    color: #b0b0b0;
+    min-width: 80px;
+}
+
+/* 底部按钮区域 */
+.button-row {
+    flex-direction: row;
+    justify-content: flex-end; /* 靠右对齐 */
+    margin-top: 20px;
+}
+
+.primary-button {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 16px;
+    -unity-font-style: bold;
+}
+
+.primary-button:hover {
+    background-color: #45a049;
+}

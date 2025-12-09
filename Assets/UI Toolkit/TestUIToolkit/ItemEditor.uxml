@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/TestUIToolkit/ItemEditor.uss?fileID=7433441132597879392&amp;guid=7117cd11081acfc4a8f9e3d688b7787f&amp;type=3#ItemEditor"/>
+    <ui:VisualElement class="root-container">
+        <ui:VisualElement class="sidebar">
+            <ui:Label text="&#36947;&#20855;&#21015;&#34920;" class="sidebar-header"/>
+            <ui:Button text="Sword_01"/>
+            <ui:Button text="Potion_HP"/>
+            <ui:Button text="Map_Zone1"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="content">
+            <ui:Label text="&#36947;&#20855;&#35814;&#24773;&#37197;&#32622;" class="sidebar-header" style="margin-bottom: 20px;"/>
+            <ui:TextField label="&#36947;&#20855;&#21517;&#31216;" value="Sword_01"/>
+            <ui:IntegerField label="ID" value="1001"/>
+            <ui:Slider label="&#37325;&#37327; (kg)" low-value="0" high-value="100" value="5.5"/>
+            <ui:Toggle label="&#26159;&#21542;&#21487;&#20002;&#24323;" value="true"/>
+            <ui:TextField label="&#25551;&#36848;" multiline="true" style="height: 80px;"/>
+            <ui:VisualElement class="button-row">
+                <ui:Button text="&#37325;&#32622;"/>
+                <ui:Button text="&#20445;&#23384;&#20462;&#25913;" class="primary-button"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
