@@ -14,6 +14,10 @@ namespace TarodevController
     public class PlayerController : MonoBehaviour, IPlayerController
     {
         [SerializeField] private ScriptableStats _stats;
+
+        // Changed: Added external input fields
+        public bool UseExternalInput;
+        public FrameInput ExternalInput;
         private Rigidbody2D _rb;
         private CapsuleCollider2D _col;
         private FrameInput _frameInput;
@@ -41,7 +45,19 @@ namespace TarodevController
         private void Update()
         {
             _time += Time.deltaTime;
-            GatherInput();
+            if (!UseExternalInput)
+            {
+                GatherInput();
+            }
+            else
+            {
+                _frameInput = ExternalInput;
+                if (_frameInput.JumpDown)
+                {
+                    _jumpToConsume = true;
+                    _timeJumpWasPressed = _time;
+                }
+            }
         }
 
         private void GatherInput()
@@ -73,12 +89,12 @@ namespace TarodevController
             HandleJump();
             HandleDirection();
             HandleGravity();
-            
+
             ApplyMovement();
         }
 
         #region Collisions
-        
+
         private float _frameLeftGrounded = float.MinValue;
         private bool _grounded;
 
