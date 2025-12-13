@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+  <ui:VisualElement class="feel-timeline-window">
+    <ui:VisualElement class="feel-timeline__toolbar">
+      <ui:Label text="Feel Timeline" class="feel-timeline__title" />
+      <uie:ObjectField name="mmf-player-field" label="MMF Player" allow-scene-objects="true" class="feel-timeline__object" />
+      <uie:ToolbarButton name="preview-play-button" text="Preview Play" class="feel-timeline__button" />
+      <uie:ToolbarButton name="stop-reset-button" text="Stop &amp; Reset" class="feel-timeline__button" />
+      <uie:ToolbarToggle name="frames-toggle" text="Frames" class="feel-timeline__toggle" />
+      <ui:Label name="timeline-mode-label" class="feel-timeline__mode" text="Seconds" />
+    </ui:VisualElement>
+
+    <ui:VisualElement class="feel-timeline__content">
+      <ui:VisualElement class="feel-timeline__ruler" name="timeline-ruler" />
+      <uie:Slider name="time-slider" low-value="0" high-value="10" show-input-field="true" class="feel-timeline__slider" />
+      <ui:VisualElement class="feel-timeline__tracks" name="timeline-tracks">
+        <ui:VisualElement class="feel-timeline__tracks-header">
+          <ui:Label text="Tracks" class="feel-timeline__tracks-title" />
+        </ui:VisualElement>
+        <ui:VisualElement class="feel-timeline__tracks-content" name="tracks-scroll" />
+        <ui:VisualElement class="feel-timeline__pointer" name="timeline-pointer" />
+      </ui:VisualElement>
+      <ui:Label name="timeline-empty" class="feel-timeline__empty" text="Drag an MMF Player into the slot to visualize its feedbacks." />
+    </ui:VisualElement>
+  </ui:VisualElement>
+</ui:UXML>

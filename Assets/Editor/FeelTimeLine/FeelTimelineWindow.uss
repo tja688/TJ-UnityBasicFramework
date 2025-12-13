@@ -1,0 +1,147 @@
+.feel-timeline-window {
+    padding: 6px;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.feel-timeline__toolbar {
+    flex-direction: row;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.feel-timeline__title {
+    unity-font-style: bold;
+    font-size: 14px;
+}
+
+.feel-timeline__object {
+    min-width: 220px;
+}
+
+.feel-timeline__button,
+.feel-timeline__toggle {
+    min-width: 100px;
+}
+
+.feel-timeline__mode {
+    color: #8fb3ff;
+}
+
+.feel-timeline__content {
+    border-left-color: #333;
+    border-right-color: #333;
+    border-top-color: #444;
+    border-bottom-color: #444;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    padding: 8px;
+    flex-direction: column;
+    row-gap: 6px;
+}
+
+.feel-timeline__ruler {
+    height: 24px;
+    flex-direction: row;
+    align-items: flex-end;
+    column-gap: 12px;
+}
+
+.feel-timeline__ruler .feel-timeline__tick {
+    width: 1px;
+    height: 12px;
+    background-color: #777;
+    position: relative;
+}
+
+.feel-timeline__tick-label {
+    position: absolute;
+    top: -16px;
+    color: #bfbfbf;
+    font-size: 10px;
+}
+
+.feel-timeline__slider {
+    --unity-slider-thumb-radius: 8px;
+}
+
+.feel-timeline__tracks {
+    position: relative;
+    min-height: 180px;
+    border-color: #2b2b2b;
+    border-width: 1px;
+    border-radius: 2px;
+    background-color: #1f1f1f;
+}
+
+.feel-timeline__tracks-header {
+    padding: 4px 6px;
+    border-bottom-color: #2f2f2f;
+    border-bottom-width: 1px;
+}
+
+.feel-timeline__tracks-title {
+    unity-font-style: bold;
+    font-size: 12px;
+}
+
+.feel-timeline__tracks-content {
+    position: relative;
+    padding: 6px;
+    row-gap: 4px;
+}
+
+.feel-timeline__track {
+    flex-direction: row;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.feel-timeline__track-label {
+    min-width: 160px;
+    max-width: 200px;
+    color: #d7d7d7;
+    unity-font-style: bold;
+}
+
+.feel-timeline__track-body {
+    position: relative;
+    flex-grow: 1;
+    height: 26px;
+    background-color: #242424;
+    border-radius: 2px;
+}
+
+.feel-timeline__clip {
+    position: absolute;
+    height: 20px;
+    margin-top: 3px;
+    border-radius: 2px;
+    border-bottom-width: 2px;
+    border-bottom-color: rgba(0, 0, 0, 0.35);
+    color: #111;
+    padding-left: 6px;
+    padding-right: 6px;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    unity-font-style: bold;
+    white-space: nowrap;
+}
+
+.feel-timeline__pointer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #f7c244;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.feel-timeline__empty {
+    color: #888;
+    font-style: italic;
+}
