@@ -1,6 +1,0 @@
-# HapticClipsDemoRotator.cs
-- Source: Assets/Plugins/Feel/NiceVibrations/Demo/DemoAssets/HapticClipsDemo/Scripts/HapticClipsDemoRotator.cs
-- Role: TODO: verify
-- Key types: TODO: verify
-- Dependencies: TODO: verify
-- Notes: TODO: verify
