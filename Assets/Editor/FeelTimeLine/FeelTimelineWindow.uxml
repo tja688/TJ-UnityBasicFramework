@@ -11,7 +11,7 @@
 
     <ui:VisualElement class="feel-timeline__content">
       <ui:VisualElement class="feel-timeline__ruler" name="timeline-ruler" />
-      <uie:Slider name="time-slider" low-value="0" high-value="10" show-input-field="true" class="feel-timeline__slider" />
+      <ui:Slider name="time-slider" low-value="0" high-value="10" show-input-field="true" class="feel-timeline__slider" />
       <ui:VisualElement class="feel-timeline__tracks" name="timeline-tracks">
         <ui:VisualElement class="feel-timeline__tracks-header">
           <ui:Label text="Tracks" class="feel-timeline__tracks-title" />
