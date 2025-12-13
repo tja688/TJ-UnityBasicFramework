@@ -19,13 +19,17 @@
     min-width: 220px;
 }
 
-.feel-timeline__button,
+.feel-timeline__button {
+    min-width: 92px;
+}
+
 .feel-timeline__toggle {
-    min-width: 100px;
+    margin-left: 6px;
 }
 
 .feel-timeline__mode {
-    color: #8fb3ff;
+    color: #7aa7ff;
+    unity-font-style: bold;
 }
 
 .feel-timeline__content {
@@ -42,31 +46,46 @@
     row-gap: 6px;
 }
 
-.feel-timeline__ruler {
-    height: 24px;
+/* ✅ 时间行：左 spacer + 右内容（ruler/slider） */
+.feel-timeline__time-row {
     flex-direction: row;
-    align-items: flex-end;
-    column-gap: 12px;
+    align-items: center;
 }
 
-.feel-timeline__ruler .feel-timeline__tick {
+.feel-timeline__time-left {
+    flex-shrink: 0;
+}
+
+/* ✅ ruler：tick 需要 absolute 坐标系 */
+.feel-timeline__ruler {
+    height: 24px;
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.feel-timeline__tick {
     width: 1px;
     height: 12px;
     background-color: #777;
-    position: relative;
+    position: absolute;
+    bottom: 0;
 }
 
 .feel-timeline__tick-label {
     position: absolute;
     top: -16px;
+    left: 4px;
     color: #bfbfbf;
     font-size: 10px;
 }
 
 .feel-timeline__slider {
-    --unity-slider-thumb-radius: 8px;
+    flex-grow: 1;
+    margin-top: 2px;
 }
 
+/* Tracks */
 .feel-timeline__tracks {
     position: relative;
     min-height: 180px;
@@ -84,7 +103,7 @@
 
 .feel-timeline__tracks-title {
     unity-font-style: bold;
-    font-size: 12px;
+    color: #cfcfcf;
 }
 
 .feel-timeline__tracks-content {
@@ -93,15 +112,17 @@
     row-gap: 4px;
 }
 
+/* Track row */
 .feel-timeline__track {
     flex-direction: row;
     align-items: center;
     column-gap: 8px;
 }
 
+/* ✅ 建议固定 label 宽度（否则 clip 起点会随文字长度变化） */
 .feel-timeline__track-label {
-    min-width: 160px;
-    max-width: 200px;
+    width: 180px;
+    flex-shrink: 0;
     color: #d7d7d7;
     unity-font-style: bold;
 }
@@ -116,19 +137,24 @@
 
 .feel-timeline__clip {
     position: absolute;
-    height: 20px;
-    margin-top: 3px;
-    border-radius: 2px;
-    border-bottom-width: 2px;
-    border-bottom-color: rgba(0, 0, 0, 0.35);
-    color: #111;
+    top: 3px;
+    bottom: 3px;
+    border-radius: 3px;
     padding-left: 6px;
     padding-right: 6px;
-    align-items: center;
     justify-content: center;
-    font-size: 10px;
+    align-items: center;
+    color: #111;
     unity-font-style: bold;
-    white-space: nowrap;
+}
+
+/* ✅ 指针的“时间坐标系容器”：left 由脚本设置，right=0 填满剩余区域 */
+.feel-timeline__pointer-lane {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
 }
 
 .feel-timeline__pointer {

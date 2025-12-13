@@ -14,19 +14,34 @@ public class FeelTimelineWindow : EditorWindow
     private const float MinimumDuration = 1f;
 
     private ObjectField _playerField;
-    private VisualElement _tracksScroll;
-    private VisualElement _pointer;
-    private VisualElement _ruler;
-    private Slider _timeSlider;
+    private VisualElement _tracksRoot;          // timeline-tracks
+    private VisualElement _tracksScroll;        // tracks-scroll
+    private VisualElement _pointerLane;         // pointer-lane
+    private VisualElement _pointer;             // timeline-pointer
+    private VisualElement _ruler;               // timeline-ruler
+    private UnityEngine.UIElements.Slider _timeSlider;
     private Label _modeLabel;
     private Label _emptyLabel;
     private ToolbarToggle _frameToggle;
+
+    // ✅ 左侧“名字列”占位 spacer
+    private VisualElement _timeLeftSpacer;
+    private VisualElement _sliderLeftSpacer;
 
     private float _pixelsPerSecond = DefaultPixelsPerSecond;
     private float _frameRate = DefaultFrameRate;
     private float _currentDuration = MinimumDuration;
 
+    // ✅ 统一的“时间 0 点”偏移：从 tracksRoot 左边到 clip 区起点
+    private float _timelineOffsetX = 0f;
+
+    // ✅ 自动分配颜色：按 TrackKey 稳定分配
+    private readonly Dictionary<string, Color> _autoTrackColors = new();
+
     private MMF_Player _currentPlayer;
+
+    // ✅ debounce：避免 GeometryChanged 时疯狂重建
+    private bool _pendingRebuild;
 
     [MenuItem("Window/Feel/Timeline Viewer", priority = 2050)]
     public static void ShowWindow()
@@ -48,7 +63,11 @@ public class FeelTimelineWindow : EditorWindow
 
         CacheUi();
         HookEvents();
+        UpdateModeLabel();
         RefreshTimeline();
+
+        // ✅ 窗口尺寸变化/布局变化时，重新计算 spacer & pointerLane 的 left
+        rootVisualElement.RegisterCallback<GeometryChangedEvent>(_ => RequestRebuildTimelineLayout());
     }
 
     private void CacheUi()
@@ -56,10 +75,17 @@ public class FeelTimelineWindow : EditorWindow
         _playerField = rootVisualElement.Q<ObjectField>("mmf-player-field");
         _playerField.objectType = typeof(MMF_Player);
 
+        _tracksRoot = rootVisualElement.Q<VisualElement>("timeline-tracks");
         _tracksScroll = rootVisualElement.Q<VisualElement>("tracks-scroll");
+        _pointerLane = rootVisualElement.Q<VisualElement>("pointer-lane");
+
         _pointer = rootVisualElement.Q<VisualElement>("timeline-pointer");
         _ruler = rootVisualElement.Q<VisualElement>("timeline-ruler");
-        _timeSlider = rootVisualElement.Q<Slider>("time-slider");
+        _timeSlider = rootVisualElement.Q<UnityEngine.UIElements.Slider>("time-slider");
+
+        _timeLeftSpacer = rootVisualElement.Q<VisualElement>("time-left-spacer");
+        _sliderLeftSpacer = rootVisualElement.Q<VisualElement>("slider-left-spacer");
+
         _modeLabel = rootVisualElement.Q<Label>("timeline-mode-label");
         _emptyLabel = rootVisualElement.Q<Label>("timeline-empty");
         _frameToggle = rootVisualElement.Q<ToolbarToggle>("frames-toggle");
@@ -95,21 +121,13 @@ public class FeelTimelineWindow : EditorWindow
 
     private void OnPreviewClicked()
     {
-        if (_currentPlayer == null)
-        {
-            return;
-        }
-
+        if (_currentPlayer == null) return;
         _currentPlayer.PlayFeedbacks();
     }
 
     private void OnStopResetClicked()
     {
-        if (_currentPlayer == null)
-        {
-            return;
-        }
-
+        if (_currentPlayer == null) return;
         _currentPlayer.StopFeedbacks();
         _currentPlayer.ResetFeedbacks();
     }
@@ -133,15 +151,13 @@ public class FeelTimelineWindow : EditorWindow
 
         float totalDuration = Mathf.Max(CalculateDuration(feedbacks), MinimumDuration);
         _currentDuration = totalDuration;
+
+        _timeSlider.lowValue = 0f;
         _timeSlider.highValue = _frameToggle.value ? totalDuration * _frameRate : totalDuration;
-        BuildRuler(totalDuration);
 
         foreach (var feedback in feedbacks)
         {
-            if (feedback == null)
-            {
-                continue;
-            }
+            if (feedback == null) continue;
 
             var trackKey = GetTrackKey(feedback);
             if (!groupedTracks.TryGetValue(trackKey, out var track))
@@ -154,7 +170,54 @@ public class FeelTimelineWindow : EditorWindow
             AddClip(feedback, track);
         }
 
-        PositionPointer(_timeSlider.value);
+        // ✅ 等布局稳定后，计算 clip 起点 offset，并重建 ruler/pointer
+        RequestRebuildTimelineLayout();
+    }
+
+    private void RequestRebuildTimelineLayout()
+    {
+        if (_pendingRebuild) return;
+        _pendingRebuild = true;
+
+        // ExecuteLater(1)：比 0 更稳，避免刚 CloneTree/刚 Add 子元素时 worldBound 还没更新
+        rootVisualElement.schedule.Execute(() =>
+        {
+            _pendingRebuild = false;
+
+            if (_currentPlayer == null) return;
+
+            UpdateTimelineOffset();
+            ApplyTimelineOffsetToLayout();
+
+            BuildRuler(_currentDuration);
+            PositionPointer(_timeSlider.value);
+        }).ExecuteLater(1);
+    }
+
+    private void UpdateTimelineOffset()
+    {
+        _timelineOffsetX = 0f;
+
+        if (_tracksRoot == null || _tracksScroll == null) return;
+
+        var firstBody = _tracksScroll.Q<VisualElement>(className: "feel-timeline__track-body");
+        if (firstBody == null) return;
+
+        // ✅ offset = clip 区起点 - tracksRoot 左边（同一世界坐标系，最稳定）
+        _timelineOffsetX = firstBody.worldBound.xMin - _tracksRoot.worldBound.xMin;
+        if (_timelineOffsetX < 0f) _timelineOffsetX = 0f;
+    }
+
+    private void ApplyTimelineOffsetToLayout()
+    {
+        if (_timeLeftSpacer != null) _timeLeftSpacer.style.width = _timelineOffsetX;
+        if (_sliderLeftSpacer != null) _sliderLeftSpacer.style.width = _timelineOffsetX;
+
+        if (_pointerLane != null)
+        {
+            // pointerLane 的 left = clip 起点
+            _pointerLane.style.left = _timelineOffsetX;
+        }
     }
 
     private float CalculateDuration(IEnumerable<MMF_Feedback> feedbacks)
@@ -162,10 +225,7 @@ public class FeelTimelineWindow : EditorWindow
         float duration = 0f;
         foreach (var feedback in feedbacks)
         {
-            if (feedback == null)
-            {
-                continue;
-            }
+            if (feedback == null) continue;
 
             float start = feedback.Timing != null ? Mathf.Max(0f, feedback.Timing.InitialDelay) : 0f;
             float clipDuration = feedback.FeedbackDuration > 0f ? feedback.FeedbackDuration : 0.1f;
@@ -187,19 +247,18 @@ public class FeelTimelineWindow : EditorWindow
         var body = new VisualElement();
         body.AddToClassList("feel-timeline__track-body");
         trackRoot.Add(body);
+
         return trackRoot;
     }
 
     private void AddClip(MMF_Feedback feedback, VisualElement track)
     {
         var body = track.Q<VisualElement>(className: "feel-timeline__track-body");
-        if (body == null)
-        {
-            return;
-        }
+        if (body == null) return;
 
         float start = feedback.Timing != null ? Mathf.Max(0f, feedback.Timing.InitialDelay) : 0f;
         float clipDuration = feedback.FeedbackDuration > 0f ? feedback.FeedbackDuration : 0.25f;
+
         float startPixels = start * _pixelsPerSecond;
         float widthPixels = Mathf.Max(clipDuration * _pixelsPerSecond, 12f);
 
@@ -230,19 +289,19 @@ public class FeelTimelineWindow : EditorWindow
 
             var tick = new VisualElement();
             tick.AddToClassList("feel-timeline__tick");
+
+            // ✅ ruler 已经从 clip 区开始了，所以不需要再加 origin 偏移
             tick.style.left = time * _pixelsPerSecond;
 
             var tickLabel = new Label(label);
             tickLabel.AddToClassList("feel-timeline__tick-label");
             tick.Add(tickLabel);
+
             _ruler.Add(tick);
         }
     }
 
-    private string GetTrackKey(MMF_Feedback feedback)
-    {
-        return feedback.GetType().Name;
-    }
+    private string GetTrackKey(MMF_Feedback feedback) => feedback.GetType().Name;
 
     private string GetTrackLabel(MMF_Feedback feedback)
     {
@@ -251,7 +310,6 @@ public class FeelTimelineWindow : EditorWindow
         {
             return $"{typeName} - {feedback.Label}";
         }
-
         return typeName;
     }
 
@@ -261,32 +319,41 @@ public class FeelTimelineWindow : EditorWindow
         {
             return feedback.Label;
         }
-
         return feedback.GetType().Name;
     }
 
+    // ✅ 修复“全黑”：DisplayColor 默认经常是黑色(0,0,0,1)
     private Color GetClipColor(MMF_Feedback feedback)
     {
-        Color display = feedback.DisplayColor;
-        if (display == default)
+        var display = feedback.DisplayColor;
+
+        if (display.a > 0.001f && display != Color.black)
         {
-            return new Color(0.25f, 0.65f, 0.95f, 0.9f);
+            display.a = 0.9f;
+            return display;
         }
 
-        display.a = 0.9f;
-        return display;
+        var key = GetTrackKey(feedback);
+        if (!_autoTrackColors.TryGetValue(key, out var c))
+        {
+            float h = Mathf.Repeat(Mathf.Abs(key.GetHashCode()) * 0.6180339887f, 1f);
+            c = Color.HSVToRGB(h, 0.55f, 0.9f);
+            c.a = 0.9f;
+            _autoTrackColors[key] = c;
+        }
+
+        return c;
     }
 
     private void PositionPointer(float sliderValue)
     {
-        if (_currentDuration <= 0f)
-        {
-            return;
-        }
+        if (_currentDuration <= 0f) return;
 
         float time = _frameToggle.value ? sliderValue / _frameRate : sliderValue;
         float clampedTime = Mathf.Clamp(time, 0f, _currentDuration);
         float pos = clampedTime * _pixelsPerSecond;
+
+        // ✅ pointer 的父容器(pointerLane)就是 clip 区的 0 点
         _pointer.style.left = pos;
         _pointer.style.display = DisplayStyle.Flex;
     }
