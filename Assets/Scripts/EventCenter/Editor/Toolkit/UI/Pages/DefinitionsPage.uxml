@@ -1,0 +1,41 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement class="fr-page fr-col">
+        <ui:Label class="fr-help" text="Manage EventName enum members (create / edit doc+metadata / mark deprecated). Rename/refactor is intentionally not supported." />
+
+        <ui:VisualElement class="fr-row" style="flex-grow: 1;">
+            <ui:VisualElement class="fr-split-left fr-col">
+                <uie:Toolbar>
+                    <uie:ToolbarSearchField name="searchField" style="flex-grow: 1;" />
+                    <uie:ToolbarMenu name="filterMenu" text="All" />
+                </uie:Toolbar>
+                <ui:ListView name="eventsList" style="flex-grow: 1;" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="fr-split-right fr-col">
+                <ui:VisualElement class="fr-card fr-col">
+                    <ui:Label name="selectedTitle" text="Selected: (none)" />
+                    <ui:VisualElement class="fr-row" style="margin-top: 6px; align-items: center;">
+                        <ui:Label text="Deprecated:" />
+                        <ui:Label name="deprecatedBadge" class="fr-badge fr-badge-warn" text="Obsolete" style="display: none;" />
+                    </ui:VisualElement>
+                    <ui:TextField name="summaryField" label="Summary" multiline="true" style="height: 60px;" />
+                    <ui:VisualElement name="paramsContainer" class="fr-col" style="margin-top: 6px;" />
+                    <ui:VisualElement class="fr-row" style="margin-top: 8px;">
+                        <ui:Button name="saveMetadataButton" text="Save Metadata" />
+                        <ui:Button name="deprecateButton" text="Mark Deprecated" style="margin-left: 8px;" />
+                    </ui:VisualElement>
+                    <ui:TextField name="deprecateReasonField" label="Deprecate Reason" multiline="true" style="display: none; height: 48px;" />
+                </ui:VisualElement>
+
+                <ui:VisualElement class="fr-card fr-col">
+                    <ui:Label text="New Event" />
+                    <ui:TextField name="newEventNameField" label="Name" />
+                    <ui:TextField name="newSummaryField" label="Summary" multiline="true" style="height: 48px;" />
+                    <ui:IntegerField name="newParamCountField" label="Param Count (0..5)" value="0" />
+                    <ui:VisualElement name="newParamsContainer" class="fr-col" style="margin-top: 6px;" />
+                    <ui:Button name="createButton" text="Create (Append to enum)" style="margin-top: 8px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

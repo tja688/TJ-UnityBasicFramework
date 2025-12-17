@@ -1,0 +1,22 @@
+.fr-root {
+    flex-grow: 1;
+}
+
+.fr-toolbar-spacer {
+    flex-grow: 1;
+}
+
+.fr-status {
+    unity-text-align: middle-left;
+    opacity: 0.85;
+    margin-left: 6px;
+}
+
+.fr-page-host {
+    flex-grow: 1;
+}
+
+.fr-page-container {
+    flex-grow: 1;
+}
+

@@ -1,0 +1,76 @@
+.fr-page {
+    flex-grow: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.fr-row {
+    flex-direction: row;
+}
+
+.fr-col {
+    flex-direction: column;
+}
+
+.fr-split-left {
+    width: 280px;
+    min-width: 240px;
+    max-width: 420px;
+    margin-right: 10px;
+}
+
+.fr-split-right {
+    flex-grow: 1;
+}
+
+.fr-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(255, 255, 255, 0.08);
+    border-right-color: rgba(255, 255, 255, 0.08);
+    border-top-color: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.fr-badge {
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+    margin-left: 6px;
+    font-size: 11px;
+    opacity: 0.95;
+}
+
+.fr-badge-warn {
+    background-color: rgba(255, 190, 50, 0.18);
+    border-left-color: rgba(255, 190, 50, 0.5);
+    border-right-color: rgba(255, 190, 50, 0.5);
+    border-top-color: rgba(255, 190, 50, 0.5);
+    border-bottom-color: rgba(255, 190, 50, 0.5);
+}
+
+.fr-badge-error {
+    background-color: rgba(255, 70, 70, 0.16);
+    border-left-color: rgba(255, 70, 70, 0.55);
+    border-right-color: rgba(255, 70, 70, 0.55);
+    border-top-color: rgba(255, 70, 70, 0.55);
+    border-bottom-color: rgba(255, 70, 70, 0.55);
+}
+
+.fr-help {
+    opacity: 0.85;
+    margin-bottom: 8px;
+}
+

@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement class="fr-page fr-col">
+        <ui:Label class="fr-help" text="Edit Mode: scan only scripts referenced by MonoBehaviours in currently open scenes. Play Mode: live TriggerEvent monitor (editor-only diagnostics hook)." />
+
+        <ui:VisualElement name="editModeContainer" class="fr-col" style="flex-grow: 1;">
+            <uie:Toolbar>
+                <uie:ToolbarButton name="scanSceneButton" text="Scan Open Scenes" />
+                <uie:ToolbarSearchField name="searchField" style="flex-grow: 1; margin-left: 8px;" />
+            </uie:Toolbar>
+            <ui:ScrollView name="editResultsScroll" style="flex-grow: 1; margin-top: 8px;" />
+            <ui:Label name="editFooterLabel" text="" style="opacity: 0.85; margin-top: 6px;" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="playModeContainer" class="fr-col" style="flex-grow: 1; display: none;">
+            <uie:Toolbar>
+                <uie:ToolbarToggle name="monitorToggle" text="Enable Monitoring" />
+                <uie:ToolbarButton name="clearButton" text="Clear" />
+                <uie:ToolbarSearchField name="filterField" style="flex-grow: 1; margin-left: 8px;" />
+            </uie:Toolbar>
+            <ui:ListView name="historyList" style="flex-grow: 1; margin-top: 8px;" />
+            <ui:Label name="playFooterLabel" text="" style="opacity: 0.85; margin-top: 6px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
+

@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement class="fr-root">
+        <uie:Toolbar class="fr-toolbar">
+            <uie:ToolbarToggle name="tabDefinitions" text="Definitions" value="true" />
+            <uie:ToolbarToggle name="tabProjectUsage" text="Project Usage" />
+            <uie:ToolbarToggle name="tabScene" text="Scene" />
+            <ui:VisualElement class="fr-toolbar-spacer" />
+            <uie:ToolbarButton name="refreshButton" text="Refresh" />
+            <ui:Label name="statusLabel" class="fr-status" text="" />
+        </uie:Toolbar>
+
+        <ui:VisualElement name="pageHost" class="fr-page-host">
+            <ui:VisualElement name="definitionsContainer" class="fr-page-container" />
+            <ui:VisualElement name="projectUsageContainer" class="fr-page-container" style="display: none;" />
+            <ui:VisualElement name="sceneContainer" class="fr-page-container" style="display: none;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
+

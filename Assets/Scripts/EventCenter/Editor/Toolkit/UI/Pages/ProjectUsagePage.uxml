@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement class="fr-page fr-col">
+        <ui:Label class="fr-help" text="Manual regex scan of project scripts (excluding /Editor/) for EventCenter.AddListener/RemoveListener/TriggerEvent usage. Groups by event name and detects signature mismatches." />
+
+        <uie:Toolbar>
+            <uie:ToolbarButton name="scanProjectButton" text="Scan Project" />
+            <uie:ToolbarSearchField name="searchField" style="flex-grow: 1; margin-left: 8px;" />
+        </uie:Toolbar>
+
+        <ui:ScrollView name="resultsScroll" style="flex-grow: 1; margin-top: 8px;" />
+
+        <ui:Label name="footerLabel" text="" style="opacity: 0.85; margin-top: 6px;" />
+    </ui:VisualElement>
+</ui:UXML>
+

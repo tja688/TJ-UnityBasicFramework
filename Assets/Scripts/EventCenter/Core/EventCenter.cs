@@ -164,6 +164,9 @@ namespace FlyRabbit.EventCenter
         /// <param name="eventName"></param>
         public static void TriggerEvent(EventName eventName)
         {
+#if UNITY_EDITOR
+            EventDiagnostics.NotifyTrigger(eventName, EventDiagnosticsSignatureCache.Empty);
+#endif
             if (IsNotRegisteredOrEmpty(eventName))
             {
                 return;
@@ -183,6 +186,9 @@ namespace FlyRabbit.EventCenter
         /// <param name="Parameter"></param>
         public static void TriggerEvent<T>(EventName eventName, T Parameter)
         {
+#if UNITY_EDITOR
+            EventDiagnostics.NotifyTrigger(eventName, EventDiagnosticsSignatureCache<T>.Value);
+#endif
             if (IsNotRegisteredOrEmpty(eventName))
             {
                 return;
@@ -204,6 +210,9 @@ namespace FlyRabbit.EventCenter
         /// <param name="Parameter2"></param>
         public static void TriggerEvent<T1, T2>(EventName eventName, T1 Parameter1, T2 Parameter2)
         {
+#if UNITY_EDITOR
+            EventDiagnostics.NotifyTrigger(eventName, EventDiagnosticsSignatureCache<T1, T2>.Value);
+#endif
             if (IsNotRegisteredOrEmpty(eventName))
             {
                 return;
@@ -227,6 +236,9 @@ namespace FlyRabbit.EventCenter
         /// <param name="Parameter3"></param>
         public static void TriggerEvent<T1, T2, T3>(EventName eventName, T1 Parameter1, T2 Parameter2, T3 Parameter3)
         {
+#if UNITY_EDITOR
+            EventDiagnostics.NotifyTrigger(eventName, EventDiagnosticsSignatureCache<T1, T2, T3>.Value);
+#endif
             if (IsNotRegisteredOrEmpty(eventName))
             {
                 return;
@@ -252,6 +264,9 @@ namespace FlyRabbit.EventCenter
         /// <param name="Parameter4"></param>
         public static void TriggerEvent<T1, T2, T3, T4>(EventName eventName, T1 Parameter1, T2 Parameter2, T3 Parameter3, T4 Parameter4)
         {
+#if UNITY_EDITOR
+            EventDiagnostics.NotifyTrigger(eventName, EventDiagnosticsSignatureCache<T1, T2, T3, T4>.Value);
+#endif
             if (IsNotRegisteredOrEmpty(eventName))
             {
                 return;
@@ -279,6 +294,9 @@ namespace FlyRabbit.EventCenter
         /// <param name="Parameter5"></param>
         public static void TriggerEvent<T1, T2, T3, T4, T5>(EventName eventName, T1 Parameter1, T2 Parameter2, T3 Parameter3, T4 Parameter4, T5 Parameter5)
         {
+#if UNITY_EDITOR
+            EventDiagnostics.NotifyTrigger(eventName, EventDiagnosticsSignatureCache<T1, T2, T3, T4, T5>.Value);
+#endif
             if (IsNotRegisteredOrEmpty(eventName))
             {
                 return;
