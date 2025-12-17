@@ -331,6 +331,10 @@ namespace FlyRabbit.EventCenter
                 {
                     continue;
                 }
+                if (path.EndsWith("/EventCenterVoidEventRelay.cs", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
                 m_ScriptPaths.Add(path);
             }
             //遍历每一个文件

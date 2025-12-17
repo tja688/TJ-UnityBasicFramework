@@ -7,6 +7,8 @@ namespace FlyRabbit.EventCenter.EditorToolkit
 {
     public sealed class EventUsageScanner
     {
+        public const string DefaultIgnoredScriptFileName = "EventCenterVoidEventRelay.cs";
+
         private static readonly Regex AddRegex = new Regex(
             @"(?<!""[^\s]*)EventCenter\s*\.\s*AddListener\s*(?:<\s*(?<Types>[^>]+)\s*>)?\s*\(\s*EventName\s*\.\s*(?<Name>\w+)",
             RegexOptions.Compiled | RegexOptions.Singleline);
@@ -28,6 +30,10 @@ namespace FlyRabbit.EventCenter.EditorToolkit
                 {
                     continue;
                 }
+                if (IsIgnoredScript(assetPath))
+                {
+                    continue;
+                }
 
                 var fullPath = Path.GetFullPath(assetPath);
                 if (!File.Exists(fullPath))
@@ -44,6 +50,12 @@ namespace FlyRabbit.EventCenter.EditorToolkit
             }
 
             return results;
+        }
+
+        private static bool IsIgnoredScript(string assetPath)
+        {
+            var fileName = Path.GetFileName(assetPath);
+            return string.Equals(fileName, DefaultIgnoredScriptFileName, StringComparison.OrdinalIgnoreCase);
         }
 
         public IReadOnlyList<EventUsageGroup> GroupAndMarkMismatches(IReadOnlyList<EventUsageRecord> records)
@@ -178,4 +190,3 @@ namespace FlyRabbit.EventCenter.EditorToolkit
         }
     }
 }
-
